@@ -7,7 +7,7 @@ function UserInput (props) {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    setName(e.target.value)
+    //setName(e.target.value)
     console.log({Name})
     
   }
@@ -20,7 +20,7 @@ function UserInput (props) {
       try {
         let {data} = await axios.get(`https://api.github.com/users/${Name}/repos`)
         console.log(data)
-
+        
       } catch (err) {
         console.warn(err);
       }
@@ -37,9 +37,9 @@ function UserInput (props) {
         <input onChange={(e) => handleInput(e, setName)} type="text" placeholder="Enter Github Username" value = {Name}/>
         <input type="submit" value="Submit" />
     </form>
+    <p></p>
     </>
   );
-
 
 };
 

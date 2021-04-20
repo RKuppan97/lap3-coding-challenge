@@ -7,7 +7,6 @@ function Header () {
       <h1>Github Clone</h1>
     </>
   )
+};
 
-}
-
-export default Header
+export default Header;

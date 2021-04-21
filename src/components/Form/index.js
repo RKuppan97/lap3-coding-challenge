@@ -4,7 +4,10 @@ import axios from 'axios';
 function UserInput (props) {
 
   const [name, setName] = useState('')
+  const [GitData, setGitData] = useState('')
+  //let str = JSON.stringify(GitData)
 
+  
   const handleSubmit = event => {
     event.preventDefault()
 
@@ -12,29 +15,30 @@ function UserInput (props) {
       const response = await axios.get(`https://api.github.com/users/${name}/repos`)
 
       // create a for loop to iterate over each repo and retrieve data //
-
+      
       const gitData = response.data 
-      console.log(gitData)
-      
-      // const result = []
-      
-      // for (const i = 0; i < gitData.length; i++) {
-      //   const forks = gitData[i].forks
-      //   const stargazer = gitData[i].stargazers_count
-      //   const issues = gitData[i].open_issues_count
-
-      //   const repoData = { forks, stargazer, issues }
-      //   result.push(repoData)
-      //   return result
-      // }
+      //console.log(gitData)
+      setGitData(gitData)
+      //console.log(GitData)
+      const result = []
+      for (let i = 0; i < gitData.length; i++) {
+        const forks = gitData[i].forks
+        const stargazer = gitData[i].stargazers_count
+        const issues = gitData[i].open_issues_count
+        const nameOfRepo = gitData[i].name
+        const repoData = { nameOfRepo,forks, stargazer, issues }
+        result.push(repoData)
+        console.log(result)
+        //return result
+      }
       
     }
     
     getGitData()
   }
-  
-  
+
   return (
+    <>
     <form onSubmit={handleSubmit}>
       <input
         type="text"
@@ -45,6 +49,7 @@ function UserInput (props) {
       />
       <button type="submit">Submit</button>
     </form>
+    </>
   );
 
 };

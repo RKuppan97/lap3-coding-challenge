@@ -1,44 +1,51 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios';
+
 function UserInput (props) {
 
-  const [Name, setName] = useState('')
+  const [name, setName] = useState('')
 
+  const handleSubmit = event => {
+    event.preventDefault()
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    //setName(e.target.value)
-    console.log({Name})
-    
-  }
-  function handleInput(e, inputToSet){
-    inputToSet(e.target.value)
-}
-
-  useEffect(() => {
     async function getGitData() {
-      try {
-        let {data} = await axios.get(`https://api.github.com/users/${Name}/repos`)
-        console.log(data)
-        
-      } catch (err) {
-        console.warn(err);
-      }
+      const response = await axios.get(`https://api.github.com/users/${name}/repos`)
 
+      // create a for loop to iterate over each repo and retrieve data //
+
+      const gitData = response.data 
+      console.log(gitData)
+      
+      // const result = []
+      
+      // for (const i = 0; i < gitData.length; i++) {
+      //   const forks = gitData[i].forks
+      //   const stargazer = gitData[i].stargazers_count
+      //   const issues = gitData[i].open_issues_count
+
+      //   const repoData = { forks, stargazer, issues }
+      //   result.push(repoData)
+      //   return result
+      // }
+      
     }
+    
     getGitData()
-
-  },[])
-  //onChange={e => setName(e.target.value)}
-
+  }
+  
+  
   return (
-    <>
     <form onSubmit={handleSubmit}>
-        <input onChange={(e) => handleInput(e, setName)} type="text" placeholder="Enter Github Username" value = {Name}/>
-        <input type="submit" value="Submit" />
+      <input
+        type="text"
+        value={name}
+        onChange={event => setName(event.target.value)}
+        placeholder="GitHub username"
+        required
+      />
+      <button type="submit">Submit</button>
     </form>
-    <p></p>
-    </>
+
   );
 
 };

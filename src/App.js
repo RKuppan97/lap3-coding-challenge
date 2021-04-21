@@ -6,8 +6,8 @@ import './App.css';
 function App(){
     return(
       <>
-        <h1>Hello</h1>
-        <UserInput/>
+        <h1>GitHub Clone</h1>
+        <UserInput />
       </>
     );
   };

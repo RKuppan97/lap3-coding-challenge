@@ -5,8 +5,7 @@ function UserInput (props) {
 
   const [name, setName] = useState('')
   const [GitData, setGitData] = useState('')
-  //let str = JSON.stringify(GitData)
-
+  
   
   const handleSubmit = event => {
     event.preventDefault()
@@ -20,6 +19,8 @@ function UserInput (props) {
       //console.log(gitData)
       setGitData(gitData)
       //console.log(GitData)
+      
+      /*
       const result = []
       for (let i = 0; i < gitData.length; i++) {
         const forks = gitData[i].forks
@@ -31,12 +32,31 @@ function UserInput (props) {
         console.log(result)
         //return result
       }
+      */
       
     }
     
     getGitData()
+    
+    function renderData ({data}) {
+      return (
+        data.map((response) => {
+        <>
+        <h2> response.name </h2>
+        <p>response.forks</p>
+        <p>response.stargazers_count</p>
+        <p>response.open_issues_count</p>
+        </>
+      })
+
+      )
+    }
+
+    renderData(GitData)
+
   }
 
+  
   return (
     <>
     <form onSubmit={handleSubmit}>

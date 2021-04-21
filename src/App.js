@@ -1,5 +1,4 @@
 import React from 'react'
-import { Header } from './layout'
 import {UserInput} from './components'
 import './App.css';
 

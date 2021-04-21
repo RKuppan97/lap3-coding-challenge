@@ -19,6 +19,7 @@ function UserInput (props) {
     async function getGitData() {
       try {
         let {data} = await axios.get(`https://api.github.com/users/${Name}/repos`)
+        console.log('This is working')
         console.log(data)
         
       } catch (err) {
@@ -37,7 +38,7 @@ function UserInput (props) {
         <input onChange={(e) => handleInput(e, setName)} type="text" placeholder="Enter Github Username" value = {Name}/>
         <input type="submit" value="Submit" />
     </form>
-    <p></p>
+    
     </>
   );
 
